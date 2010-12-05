@@ -6,6 +6,12 @@
  * @author Jan Marek
  * @license MIT
  */
+
+namespace Navigation;
+
+use Nette\Application\Control;
+
+
 class Navigation extends Control {
 
 	/** @var NavigationNode */

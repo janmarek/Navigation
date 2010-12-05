@@ -6,6 +6,12 @@
  * @author Jan Marek
  * @license MIT
  */
+
+namespace Navigation;
+
+use Nette\ComponentContainer;
+
+
 class NavigationNode extends ComponentContainer {
 
 	/** @var string */
