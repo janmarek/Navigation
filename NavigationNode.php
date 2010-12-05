@@ -12,7 +12,8 @@ namespace Navigation;
 use Nette\ComponentContainer;
 
 
-class NavigationNode extends ComponentContainer {
+class NavigationNode extends ComponentContainer
+{
 
 	/** @var string */
 	public $label;
@@ -23,7 +24,8 @@ class NavigationNode extends ComponentContainer {
 	/** @var bool */
 	public $isCurrent = false;
 
-	
+
+
 	/**
 	 * Add navigation node as a child
 	 * @staticvar int $counter
@@ -41,5 +43,4 @@ class NavigationNode extends ComponentContainer {
 
 		return $navigationNode;
 	}
-
 }

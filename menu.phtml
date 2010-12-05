@@ -1,17 +1,14 @@
 <ul class="control menu">
-	{if $useHomepage}
-	<li>
+	<li n:if="$useHomepage">
 		{if $homepage->isCurrent}
 		<span class="active"><strong>{$homepage->label}</strong></span>
 		{else}
 		<a href="{$homepage->url}">{$homepage->label}</a>
 		{/if}
 	</li>
-	{/if}
 
 	{block #menu}
-	{foreach $children as $item}
-	<li>
+	<li n:foreach="$children as $item">
 		{if $item->isCurrent}
 		<span class="active"><strong>{$item->label}</strong></span>
 		{else}
@@ -24,6 +21,5 @@
 		</ul>
 		{/if}
 	</li>
-	{/foreach}
 	{/block}
 </ul>
