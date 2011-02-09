@@ -43,4 +43,16 @@ class NavigationNode extends ComponentContainer
 
 		return $navigationNode;
 	}
+
+
+
+	/**
+	 * Set node as current
+	 * @param NavigationNode $node
+	 */
+	public function setCurrent(NavigationNode $node)
+	{
+		return $this->parent->setCurrent($node);
+	}
+
 }
