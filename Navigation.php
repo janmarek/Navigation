@@ -9,7 +9,7 @@
 
 namespace Navigation;
 
-use Nette\Application\Control;
+use Nette\Application\UI\Control;
 
 
 class Navigation extends Control

@@ -9,10 +9,10 @@
 
 namespace Navigation;
 
-use Nette\ComponentContainer;
+use Nette\ComponentModel\Container;
 
 
-class NavigationNode extends ComponentContainer
+class NavigationNode extends Container
 {
 
 	/** @var string */
