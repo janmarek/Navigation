@@ -6,8 +6,15 @@
  * @author Jan Marek
  * @license MIT
  */
-class Navigation extends Control {
 
+namespace Navigation;
+
+use Nette\Application\UI\Control;
+
+
+class Navigation extends Control
+{
+	
 	/** @var NavigationNode */
 	private $homepage;
 
@@ -18,11 +25,13 @@ class Navigation extends Control {
 	private $useHomepage = false;
 
 
+
 	/**
 	 * Set node as current
 	 * @param NavigationNode $node
 	 */
-	public function setCurrent(NavigationNode $node) {
+	public function setCurrent(NavigationNode $node)
+	{
 		if (isset($this->current)) {
 			$this->current->isCurrent = false;
 		}
@@ -31,15 +40,18 @@ class Navigation extends Control {
 	}
 
 
+
 	/**
 	 * Add navigation node as a child
 	 * @param string $label
 	 * @param string $url
 	 * @return NavigationNode
 	 */
-	public function add($label, $url) {
+	public function add($label, $url)
+	{
 		return $this->getComponent("homepage")->add($label, $url);
 	}
+
 
 
 	/**
@@ -48,7 +60,8 @@ class Navigation extends Control {
 	 * @param string $url
 	 * @return Navigation
 	 */
-	public function setupHomepage($label, $url) {
+	public function setupHomepage($label, $url)
+	{
 		$homepage = $this->getComponent("homepage");
 		$homepage->label = $label;
 		$homepage->url = $url;
@@ -57,13 +70,16 @@ class Navigation extends Control {
 	}
 
 
+
 	/**
 	 * Homepage factory
 	 * @param string $name
 	 */
-	protected function createComponentHomepage($name) {
+	protected function createComponentHomepage($name)
+	{
 		new NavigationNode($this, $name);
 	}
+
 
 
 	/**
@@ -72,7 +88,8 @@ class Navigation extends Control {
 	 * @param NavigationNode $base
 	 * @param bool $renderHomepage
 	 */
-	public function renderMenu($renderChildren = true, $base = null, $renderHomepage = true) {
+	public function renderMenu($renderChildren = TRUE, $base = NULL, $renderHomepage = TRUE)
+	{
 		$template = $this->createTemplate()
 			->setFile(dirname(__FILE__) . "/menu.phtml");
 		$template->homepage = $base ? $base : $this->getComponent("homepage");
@@ -83,34 +100,44 @@ class Navigation extends Control {
 	}
 
 
+	
 	/**
 	 * Render full menu
 	 */
-	public function render() {
+	public function render()
+	{
 		$this->renderMenu();
 	}
+
 
 
 	/**
 	 * Render main menu
 	 */
-	public function renderMainMenu() {
-		$this->renderMenu(false);
+	public function renderMainMenu()
+	{
+		$this->renderMenu(FALSE);
 	}
 
-	
+
+
 	/**
 	 * Render breadcrumbs
 	 */
-	public function renderBreadcrumbs() {
-		if (empty($this->current)) return;
+	public function renderBreadcrumbs()
+	{
+		if (empty($this->current)) {
+			return;
+		}
 
 		$items = array();
 		$node = $this->current;
 
 		while ($node instanceof NavigationNode) {
 			$parent = $node->getParent();
-			if (!$this->useHomepage && !($parent instanceof NavigationNode)) break;
+			if (!$this->useHomepage && !($parent instanceof NavigationNode)) {
+				break;
+			}
 
 			array_unshift($items, $node);
 			$node = $parent;
@@ -118,8 +145,8 @@ class Navigation extends Control {
 
 		$template = $this->createTemplate()
 			->setFile(dirname(__FILE__) . "/breadcrumbs.phtml");
+		
 		$template->items = $items;
 		$template->render();
 	}
-
 }
