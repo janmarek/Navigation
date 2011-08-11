@@ -6,7 +6,14 @@
  * @author Jan Marek
  * @license MIT
  */
-class NavigationNode extends ComponentContainer {
+
+namespace Navigation;
+
+use Nette\ComponentModel\Container;
+
+
+class NavigationNode extends Container
+{
 
 	/** @var string */
 	public $label;
@@ -17,7 +24,8 @@ class NavigationNode extends ComponentContainer {
 	/** @var bool */
 	public $isCurrent = false;
 
-	
+
+
 	/**
 	 * Add navigation node as a child
 	 * @staticvar int $counter
@@ -34,6 +42,17 @@ class NavigationNode extends ComponentContainer {
 		$this->addComponent($navigationNode, ++$counter);
 
 		return $navigationNode;
+	}
+
+
+
+	/**
+	 * Set node as current
+	 * @param NavigationNode $node
+	 */
+	public function setCurrent(NavigationNode $node)
+	{
+		return $this->parent->setCurrent($node);
 	}
 
 }
