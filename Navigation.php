@@ -27,7 +27,7 @@ class Navigation extends Control
 	 * Set node as current
 	 * @param NavigationNode $node
 	 */
-	public function setCurrent(NavigationNode $node)
+	public function setCurrentNode(NavigationNode $node)
 	{
 		if (isset($this->current)) {
 			$this->current->isCurrent = false;
@@ -51,7 +51,7 @@ class Navigation extends Control
 	 * Setup homepage
 	 * @param string $label
 	 * @param string $url
-	 * @return Navigation
+	 * @return NavigationNode
 	 */
 	public function setupHomepage($label, $url)
 	{

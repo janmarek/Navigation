@@ -43,11 +43,18 @@ class NavigationNode extends Container
 
 	/**
 	 * Set node as current
-	 * @param NavigationNode $node
+	 * @param bool $current
+	 * @return \Navigation\NavigationNode
 	 */
-	public function setCurrent(NavigationNode $node)
+	public function setCurrent($current)
 	{
-		$this->getParent()->setCurrent($node);
+		$this->isCurrent = $current;
+
+		if ($current) {
+			$this->lookup('Navigation\Navigation')->setCurrentNode($this);
+		}
+
+		return $this;
 	}
 
 }
