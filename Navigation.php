@@ -11,10 +11,9 @@ namespace Navigation;
 
 use Nette\Application\UI\Control;
 
-
 class Navigation extends Control
 {
-	
+
 	/** @var NavigationNode */
 	private $homepage;
 
@@ -23,8 +22,6 @@ class Navigation extends Control
 
 	/** @var bool */
 	private $useHomepage = false;
-
-
 
 	/**
 	 * Set node as current
@@ -39,8 +36,6 @@ class Navigation extends Control
 		$this->current = $node;
 	}
 
-
-
 	/**
 	 * Add navigation node as a child
 	 * @param string $label
@@ -49,10 +44,8 @@ class Navigation extends Control
 	 */
 	public function add($label, $url)
 	{
-		return $this->getComponent("homepage")->add($label, $url);
+		return $this->getComponent('homepage')->add($label, $url);
 	}
-
-
 
 	/**
 	 * Setup homepage
@@ -62,14 +55,12 @@ class Navigation extends Control
 	 */
 	public function setupHomepage($label, $url)
 	{
-		$homepage = $this->getComponent("homepage");
+		$homepage = $this->getComponent('homepage');
 		$homepage->label = $label;
 		$homepage->url = $url;
 		$this->useHomepage = true;
 		return $homepage;
 	}
-
-
 
 	/**
 	 * Homepage factory
@@ -80,8 +71,6 @@ class Navigation extends Control
 		new NavigationNode($this, $name);
 	}
 
-
-
 	/**
 	 * Render menu
 	 * @param bool $renderChildren
@@ -91,16 +80,14 @@ class Navigation extends Control
 	public function renderMenu($renderChildren = TRUE, $base = NULL, $renderHomepage = TRUE)
 	{
 		$template = $this->createTemplate()
-			->setFile(dirname(__FILE__) . "/menu.phtml");
-		$template->homepage = $base ? $base : $this->getComponent("homepage");
+			->setFile(dirname(__FILE__) . '/menu.phtml');
+		$template->homepage = $base ? $base : $this->getComponent('homepage');
 		$template->useHomepage = $this->useHomepage && $renderHomepage;
 		$template->renderChildren = $renderChildren;
-		$template->children = $this->getComponent("homepage")->getComponents();
+		$template->children = $this->getComponent('homepage')->getComponents();
 		$template->render();
 	}
 
-
-	
 	/**
 	 * Render full menu
 	 */
@@ -109,8 +96,6 @@ class Navigation extends Control
 		$this->renderMenu();
 	}
 
-
-
 	/**
 	 * Render main menu
 	 */
@@ -118,8 +103,6 @@ class Navigation extends Control
 	{
 		$this->renderMenu(FALSE);
 	}
-
-
 
 	/**
 	 * Render breadcrumbs
@@ -144,9 +127,10 @@ class Navigation extends Control
 		}
 
 		$template = $this->createTemplate()
-			->setFile(dirname(__FILE__) . "/breadcrumbs.phtml");
-		
+			->setFile(dirname(__FILE__) . '/breadcrumbs.phtml');
+
 		$template->items = $items;
 		$template->render();
 	}
+
 }

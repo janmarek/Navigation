@@ -11,7 +11,6 @@ namespace Navigation;
 
 use Nette\ComponentModel\Container;
 
-
 class NavigationNode extends Container
 {
 
@@ -23,8 +22,6 @@ class NavigationNode extends Container
 
 	/** @var bool */
 	public $isCurrent = false;
-
-
 
 	/**
 	 * Add navigation node as a child
@@ -44,15 +41,13 @@ class NavigationNode extends Container
 		return $navigationNode;
 	}
 
-
-
 	/**
 	 * Set node as current
 	 * @param NavigationNode $node
 	 */
 	public function setCurrent(NavigationNode $node)
 	{
-		return $this->parent->setCurrent($node);
+		$this->getParent()->setCurrent($node);
 	}
 
 }
