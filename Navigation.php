@@ -23,6 +23,12 @@ class Navigation extends Control
 	/** @var bool */
 	private $useHomepage = false;
 
+	/** @var string */
+	private $menuTemplate;
+
+	/** @var string */
+	private $breadcrumbsTemplate;
+
 	/**
 	 * Set node as current
 	 * @param NavigationNode $node
@@ -80,7 +86,7 @@ class Navigation extends Control
 	public function renderMenu($renderChildren = TRUE, $base = NULL, $renderHomepage = TRUE)
 	{
 		$template = $this->createTemplate()
-			->setFile(dirname(__FILE__) . '/menu.phtml');
+			->setFile($this->menuTemplate ?: __DIR__ . '/menu.phtml');
 		$template->homepage = $base ? $base : $this->getComponent('homepage');
 		$template->useHomepage = $this->useHomepage && $renderHomepage;
 		$template->renderChildren = $renderChildren;
@@ -127,10 +133,34 @@ class Navigation extends Control
 		}
 
 		$template = $this->createTemplate()
-			->setFile(dirname(__FILE__) . '/breadcrumbs.phtml');
+			->setFile($this->breadcrumbsTemplate ?: __DIR__ . '/breadcrumbs.phtml');
 
 		$template->items = $items;
 		$template->render();
+	}
+
+	/**
+	 * @param string $breadcrumbsTemplate
+	 */
+	public function setBreadcrumbsTemplate($breadcrumbsTemplate)
+	{
+		$this->breadcrumbsTemplate = $breadcrumbsTemplate;
+	}
+
+	/**
+	 * @param string $menuTemplate
+	 */
+	public function setMenuTemplate($menuTemplate)
+	{
+		$this->menuTemplate = $menuTemplate;
+	}
+
+	/**
+	 * @return \Navigation\NavigationNode
+	 */
+	public function getCurrentNode()
+	{
+		return $this->current;
 	}
 
 }

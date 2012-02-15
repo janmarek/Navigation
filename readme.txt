@@ -16,7 +16,8 @@ Továrnička v presenteru:
 		$nav->setupHomepage("Úvod", $this->link("Homepage:"));
 		$sec = $nav->add("Sekce", $this->link("Category:", array("id" => 1)));
 		$article = $sec->add("Článek", $this->link("Article:", array("id" => 1)));
-		$nav->setCurrent($article);
+		$nav->setCurrentNode($article);
+		// or $article->setCurrent(TRUE);
 	}
 
 
